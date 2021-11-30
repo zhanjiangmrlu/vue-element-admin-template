@@ -1,5 +1,5 @@
 <template>
-  <h1 class="home">选项1</h1>
+  <h1 class="home">选项1测试</h1>
 </template>
 
 <script>
