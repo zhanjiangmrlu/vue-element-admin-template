@@ -42,6 +42,5 @@ export default {
   color: #333;
   line-height: 60px;
   font-size: 12px;
-  // box-shadow: 0 1px 4px rgb(0 21 41 8%);
 }
 </style>
