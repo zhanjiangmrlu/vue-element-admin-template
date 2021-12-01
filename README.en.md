@@ -1,4 +1,4 @@
-# vue-admin-template
+# vue-element-admin-template
 
 #### Description
 使用element-ui搭建的管理后台模板
