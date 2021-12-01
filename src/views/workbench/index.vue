@@ -1,12 +1,14 @@
 <template>
-  <h1 class="home">首页</h1>
+  <div>工作台</div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "Workbench",
   data() {
     return {};
   },
 };
 </script>
+
+<style lang="scss" scoped></style>

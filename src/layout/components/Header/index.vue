@@ -1,8 +1,8 @@
 <template>
   <div class="header">
     <div class="header__title">
-      <i class="el-icon-s-fold collapse" @click="handleCollapse" />
-      {{ curClickMenu }}
+      <!-- <i class="el-icon-s-fold collapse" @click="handleCollapse" /> -->
+      {{ activeMenuName }}
     </div>
     <div>
       <el-dropdown>
@@ -32,6 +32,10 @@ export default {
       curClickMenu: (state) =>
         state.curClickMenu ? state.curClickMenu : "选项1",
     }),
+    // 当前菜单名称
+    activeMenuName() {
+      return this.$route.meta.title;
+    },
   },
   methods: {
     handleCollapse() {

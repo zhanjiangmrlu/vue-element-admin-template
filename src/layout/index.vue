@@ -2,7 +2,7 @@
   <el-container class="layout">
     <Sidebar />
 
-    <el-container>
+    <el-container class="container">
       <el-header class="el-header">
         <Header />
       </el-header>
@@ -42,5 +42,9 @@ export default {
   color: #333;
   line-height: 60px;
   font-size: 12px;
+}
+
+.container {
+  padding-left: 210px;
 }
 </style>
