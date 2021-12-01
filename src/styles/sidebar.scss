@@ -70,11 +70,6 @@
   .is-active>.el-submenu__title {
     color: $subMenuActiveText !important;
   }
-  
-  .el-menu-item i,
-  .el-submenu__title i {
-    color: #bfcbd9;
-  }
 
   & .nest-menu .el-submenu>.el-submenu__title,
   & .el-submenu .el-menu-item {

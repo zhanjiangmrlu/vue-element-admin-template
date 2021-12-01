@@ -38,10 +38,11 @@ export default {
 }
 
 .el-header {
-  background-color: #b3c0d1;
   color: #333;
   line-height: 60px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 1px 8px #ccc;
 }
 
 .container {
