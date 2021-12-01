@@ -45,7 +45,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (!valid) return;
 
-        this.$router.push("/");
+        this.$router.push("/workbench/index");
       });
     },
     resetForm(formName) {

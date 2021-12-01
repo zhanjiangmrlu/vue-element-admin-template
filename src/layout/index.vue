@@ -4,7 +4,7 @@
 
     <el-container class="container">
       <el-header class="el-header">
-        <Header />
+        <Navbar />
       </el-header>
 
       <el-main>
@@ -16,11 +16,11 @@
 
 <script>
 import Sidebar from "./components/Sidebar/index";
-import Header from "./components/Header/index";
+import Navbar from "./components/Navbar/index";
 
 export default {
   name: "Layout",
-  components: { Sidebar, Header },
+  components: { Sidebar, Navbar },
   data() {
     return {};
   },
