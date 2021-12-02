@@ -1,0 +1,23 @@
+@import './variables.scss';
+@import './sidebar.scss';
+
+@font-face {
+  font-family: 'Regular';
+  src: url('../assets/fonts/Alibaba-PuHuiTi-Regular.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Regular";
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}

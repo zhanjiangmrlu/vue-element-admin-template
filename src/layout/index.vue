@@ -2,9 +2,9 @@
   <el-container class="layout">
     <Sidebar />
 
-    <el-container>
+    <el-container class="container">
       <el-header class="el-header">
-        <Header />
+        <Navbar />
       </el-header>
 
       <el-main>
@@ -16,11 +16,11 @@
 
 <script>
 import Sidebar from "./components/Sidebar/index";
-import Header from "./components/Header/index";
+import Navbar from "./components/Navbar/index";
 
 export default {
   name: "Layout",
-  components: { Sidebar, Header },
+  components: { Sidebar, Navbar },
   data() {
     return {};
   },
@@ -38,10 +38,14 @@ export default {
 }
 
 .el-header {
-  background-color: #b3c0d1;
   color: #333;
   line-height: 60px;
-  font-size: 12px;
-  // box-shadow: 0 1px 4px rgb(0 21 41 8%);
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 1px 8px #ccc;
+}
+
+.container {
+  padding-left: 210px;
 }
 </style>
