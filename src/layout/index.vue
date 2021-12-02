@@ -26,6 +26,7 @@ export default {
   },
   methods: {
     second(path) {
+      console.log("测试");
       this.$router.push(path);
     },
   },
