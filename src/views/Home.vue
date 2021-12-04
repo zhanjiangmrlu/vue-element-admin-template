@@ -7,7 +7,7 @@ export default {
   name: "Home",
   data() {
     return {
-      name: "测试GitHub",
+      name: "测试码云",
     };
   },
 };
