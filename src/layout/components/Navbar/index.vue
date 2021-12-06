@@ -1,16 +1,14 @@
 <template>
   <div class="navbar">
     <div class="navbar__title">
-      <!-- <i class="el-icon-s-fold collapse" @click="handleCollapse" /> -->
       {{ activeMenuName }}
     </div>
-
     <Logout />
   </div>
 </template>
 
 <script>
-import store from "@/store/index";
+// import store from "@/store/index";
 import Logout from "./Logout";
 
 export default {
@@ -26,9 +24,9 @@ export default {
     },
   },
   methods: {
-    handleCollapse() {
-      store.state.isCollapse = !store.state.isCollapse;
-    },
+    // handleCollapse() {
+    //   store.state.isCollapse = !store.state.isCollapse;
+    // },
   },
 };
 </script>
