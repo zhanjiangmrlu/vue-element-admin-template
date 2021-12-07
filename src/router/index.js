@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import About from "../views/About.vue";
-import Order from "../views/Order.vue";
 import Layout from "@/layout";
+import User from "../views/system/user/index.vue";
+import Log from "../views/system/log/index.vue";
+import Attack from "../views/system/attack/index.vue";
 
 Vue.use(VueRouter);
 
@@ -27,31 +27,31 @@ const routes = [
     ],
   },
   {
-    path: "/",
+    path: "/system",
     component: Layout,
     meta: {
       icon: "lock",
-      title: "用户管理",
+      title: "系统管理",
       roles: ["admin", "editor"], // you can set roles in root nav
     },
     children: [
       {
-        path: "/home",
-        component: Home,
-        name: "Home",
-        meta: { title: "首页", icon: "dashboard", affix: true },
+        path: "/system/user",
+        component: User,
+        name: "User",
+        meta: { title: "用户管理", affix: true },
       },
       {
-        path: "/about",
-        component: About,
-        name: "About",
-        meta: { title: "简介", icon: "dashboard", affix: true },
+        path: "/system/log",
+        component: Log,
+        name: "Log",
+        meta: { title: "操作日志", affix: true },
       },
       {
-        path: "/order",
-        component: Order,
-        name: "Order",
-        meta: { title: "订单", icon: "dashboard", affix: true },
+        path: "/system/attack",
+        component: Attack,
+        name: "Attack",
+        meta: { title: "攻击态势报告", affix: true },
       },
     ],
   },
