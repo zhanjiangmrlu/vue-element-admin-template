@@ -6,7 +6,9 @@
 export default {
   name: "Home",
   data() {
-    return {};
+    return {
+      name: "测试码云",
+    };
   },
 };
 </script>

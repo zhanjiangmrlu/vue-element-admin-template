@@ -1,7 +1,9 @@
 <template>
   <div class="navbar">
     <div class="navbar__title">
-      {{ activeMenuName }}
+      <!-- <i class="el-icon-s-fold collapse" @click="handleCollapse" /> -->
+      <span>{{ activeMenuName }}</span>
+      <!-- <Breadcrumb /> -->
     </div>
     <Logout />
   </div>
@@ -9,7 +11,8 @@
 
 <script>
 // import store from "@/store/index";
-import Logout from "./Logout";
+import Logout from "@/components/Logout";
+// import Breadcrumb from "@/components/Breadcrumb/index";
 
 export default {
   name: "Navbar",
@@ -45,6 +48,10 @@ export default {
     .collapse {
       font-size: 22px;
       cursor: pointer;
+      margin-right: 20px;
+    }
+
+    span {
       margin-right: 20px;
     }
   }
