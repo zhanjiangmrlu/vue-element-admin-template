@@ -5,10 +5,10 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage3"
-      :page-sizes="[100, 200, 300, 400]"
+      :page-sizes="[10, 20]"
       :page-size="100"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :total="40"
     >
     </el-pagination>
   </div>
@@ -35,6 +35,7 @@ export default {
 <style lang="scss" scoped>
 .block {
   margin-top: 20px;
+	text-align: right;
 }
 
 ::v-deep .el-pagination.is-background .el-pager li:not(.disabled).active {

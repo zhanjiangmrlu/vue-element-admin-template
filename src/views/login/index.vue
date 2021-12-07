@@ -55,6 +55,7 @@ export default {
             userName: this.ruleForm.userName,
             password: this.ruleForm.password,
           };
+          localStorage.setItem("name", this.ruleForm.userName);
           login(params)
             .then(({ data = {} }) => {
               const { result_code } = data;
