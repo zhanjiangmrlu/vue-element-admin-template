@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
-import User from "../views/system/user/index.vue";
+import User from "../views/system/user/userList.vue";
 import Log from "../views/system/log/index.vue";
 import Attack from "../views/system/attack/index.vue";
 
@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/login",
+    path: "/",
     name: "Login",
     component: () => import("@/views/login/index"),
     meta: { title: "登录", icon: "dashboard", affix: true },
