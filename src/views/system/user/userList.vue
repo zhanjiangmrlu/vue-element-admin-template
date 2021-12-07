@@ -10,12 +10,12 @@
 			"
 			style="width: 100%"
 		>
-			<el-table-column label="账号" prop="date"> </el-table-column>
-			<el-table-column label="用户名" prop="name"> </el-table-column>
+			<el-table-column label="账号" prop="user_name"> </el-table-column>
+			<el-table-column label="用户名" prop="display_name"> </el-table-column>
 			<el-table-column label="角色" prop="role"> </el-table-column>
 			<el-table-column label="邮箱" prop="email"> </el-table-column>
-			<el-table-column label="操作"> </el-table-column>
-			<el-table-column align="right">
+			<!-- <el-table-column label="操作"> </el-table-column> -->
+			<el-table-column label="操作" align="right">
 				<template slot-scope="scope">
 					<el-button
 						size="mini"
