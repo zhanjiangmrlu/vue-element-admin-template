@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
-import User from "../views/system/user/userList.vue";
+import User from "../views/system/user/index.vue";
 import Log from "../views/system/log/index.vue";
 import Attack from "../views/system/attack/index.vue";
 

@@ -11,6 +11,10 @@ request.interceptors.request.use(
   (config) => {
     // 在发送请求之前做些什么
     config.headers["token"] = "token";
+    // console.log("config", config);
+    // config.data = {
+    //   data: config.data,
+    // };
     return config;
   },
   function (error) {
