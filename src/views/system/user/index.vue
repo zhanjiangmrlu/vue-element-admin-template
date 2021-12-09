@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <el-table :data="userList">
+    <el-table :data="userList" :header-cell-style="rowClass">
       <el-table-column label="账号" prop="user_name" />
       <el-table-column label="用户名" prop="display_name" />
       <el-table-column label="角色" prop="role" />
@@ -41,7 +41,7 @@
         background
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="currentPage3"
+        :current-page="currentPage"
         :page-sizes="[3, 5]"
         :page-size="100"
         layout="total, sizes, prev, pager, next, jumper"
@@ -79,12 +79,12 @@ export default {
         email: "",
       },
       total: 0, //总条数
-      currentPage3: 1, //当前页
+      currentPage: 1, //当前页
     };
   },
 
   created() {
-    this.getUserList();
+    this.getUserList(this.currentPage);
   },
 
   methods: {
@@ -92,12 +92,12 @@ export default {
     handleEdit(index, row) {
       console.log(index, row);
       this.showEditor = true;
-      const getUserMsg = row;
+      // const getUserMsg = row;
       this.ruleForm.name = row.user_name;
       this.ruleForm.pass = row.is_admin;
       this.ruleForm.role = row.role;
       this.ruleForm.email = row.email;
-      console.log(getUserMsg, "=====");
+      // console.log(getUserMsg);
     },
 
     //删除用户信息
@@ -116,18 +116,18 @@ export default {
     },
 
     //请求列表信息
-    async getUserList() {
+    async getUserList(page) {
       const getName = localStorage.getItem("name") || "";
       const params = {
-        page: 1,
+        page: page,
         pageSize: 10,
         display_name: getName,
       };
       const { data = {} } = await getUserList(params);
       this.total = data.data.count;
-      console.log(this.total);
+      // console.log(this.total);
       this.userList = data.data.data;
-      console.log(data, "reqList");
+      // console.log(data, "reqList");
     },
 
     //显示新建用户弹窗
@@ -145,16 +145,24 @@ export default {
       this.showEditor = false;
     },
 
-    //点击分页改变当前页
+    //点击分页改变当前页 传递的值是当前点击的分页页码
     handleCurrentChange(val) {
-      this.page = val;
-      this.getUserList();
+      // this.page = val;
+      this.currentPage = val
+      console.log(val,'val');
+      this.getUserList(val);
     },
 
     //每页显示条数
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },
+
+    	//设置表头样式
+		rowClass({ row, rowIndex }) {
+			console.log(row,rowIndex) //表头行下标
+			return 'background:#f1f1f1'
+		},
   },
 };
 </script>
@@ -191,27 +199,6 @@ export default {
 .block {
   margin-top: 20px;
   text-align: right;
-}
-
-::v-deep .el-pagination.is-background .el-pager li:not(.disabled).active {
-  background-color: #fff;
-  color: #409eff;
-  border: 1px solid #409eff;
-}
-
-::v-deep .el-pagination.is-background .el-pager li {
-  border: 1px solid #bbb;
-  background-color: #fff;
-}
-
-::v-deep .el-pagination.is-background .btn-prev {
-  border: 1px solid #bbb;
-  background-color: #fff;
-}
-
-::v-deep .el-pagination.is-background .btn-next {
-  border: 1px solid #bbb;
-  background-color: #fff;
 }
 
 ::v-deep .el-table--border::after,
