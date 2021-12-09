@@ -32,42 +32,28 @@
       </el-form-item>
 
       <el-form-item label="操作分组:">
-        <el-radio v-model="radio1" label="1" border @change="handleLogin"
-          >登录/退出</el-radio
+        <el-radio
+          v-for="(item, index) in groupList"
+          :key="item"
+          v-model="groupRadio"
+          :label="index"
+          border
+          @change="() => (groupRadio = index)"
+          >{{ item }}</el-radio
         >
-        <el-radio v-model="radio1" label="2" border @change="handleCheckBox"
-          >处置操作</el-radio
-        >
-        <el-radio v-model="radio1" label="3" border @change="handleOperate"
-          >设备操作</el-radio
-        >
-        <el-radio v-model="radio1" label="4" border>系统管理</el-radio>
       </el-form-item>
 
-      <!-- 处置操作复选框 -->
+      <!-- 处理复选框 -->
       <div class="operate-type">
-        <el-form-item label="操作类型:">
-          <!-- 处置操作 -->
-          <el-checkbox-group v-model="checkList" v-if="checkBox">
-            <el-checkbox v-for="item in types" :key="item" :label="item">{{
-              item
-            }}</el-checkbox>
-          </el-checkbox-group>
-          <!-- 登录登出 -->
-          <el-checkbox-group v-model="checkLogin" v-if="loginShow">
-            <el-checkbox label="登录系统"></el-checkbox>
-            <el-checkbox label="退出系统"></el-checkbox>
-          </el-checkbox-group>
-          <!-- 设备操作 -->
-          <el-checkbox-group
-            v-model="equipmentList"
-            v-if="equipmentShow"
-            @change="handleCheckedCitiesChange"
-          >
+        <el-form-item
+          label="操作类型:"
+          v-if="groupRadio === 0 || (groupRadio > 0 && groupRadio < 5)"
+        >
+          <el-checkbox-group v-model="checkList">
             <el-checkbox
-              v-for="item in equipment"
+              v-for="item in handleType[groupRadio]"
               :key="item"
-              :label="equipment"
+              :label="item"
               >{{ item }}</el-checkbox
             >
           </el-checkbox-group>
@@ -135,7 +121,7 @@ export default {
         ip: ",",
       },
       // 操作单选框
-      radio1: "1",
+      groupRadio: "",
       pickerOptions: {
         shortcuts: [
           {
@@ -167,39 +153,60 @@ export default {
           },
         ],
       },
-      value1: "",
+      value1: "", //开始和结束日期
       value2: "",
       tableData: [], //列表数据
       currentPage: 1, //当前页
       checkList: [], //复选框列表
-      types: [
-        "创建处置",
-        "删除处置",
-        "执行封堵",
-        "解除封堵",
-        "执行调度",
-        "新建处置白名单",
-        "更新处置白名单",
-        "删除处置白名单",
-        "新建联动策略",
-        "修改联动策略",
-        "删除联动策略",
-      ],
-
-      checkBox: false, //选中操作类型
-      checkLogin: [],
-      loginShow: false, //登录登出
-      equipmentShow: false, //设备操作
-      equipmentList: [], //操作设备
-      equipment: [
-        "新建处置设备",
-        "修改处置设备",
-        "删除处置设备",
-        "新建告警设备",
-        "修改告警设备",
-        "删除告警设备",
-        "操作处置设备",
-      ],
+      groupList: ["登录/退出", "处置操作", "设备操作", "系统管理"],
+      //操作类型复选框选项
+      handleType: {
+        0: ["登录系统", "退出系统"],
+        1: [
+          "创建处置",
+          "删除处置",
+          "执行封堵",
+          "解除封堵",
+          "执行调度",
+          "新建处置白名单",
+          "更新处置白名单",
+          "删除处置白名单",
+          "新建联动策略",
+          "修改联动策略",
+          "删除联动策略",
+        ],
+        2: [
+          "新建处置设备",
+          "修改处置设备",
+          "删除处置设备",
+          "新建告警设备",
+          "修改告警设备",
+          "删除告警设备",
+          "操作处置设备",
+        ],
+        3: [
+          "新建用户",
+          "修改用户",
+          "删除用户",
+          "新建角色",
+          "删除角色",
+          "修改角色",
+          "修改安全设置",
+          "新建访问白名单",
+          "删除访问白名单",
+          "修改存储设置",
+          "导出配置数据",
+          "导入配置数据",
+          "新建报表",
+          "删除报表",
+          "下载报表",
+          "备份日志",
+          "删除日志",
+          "清空日志",
+          "新建攻击态势日报",
+          "删除攻击态势日报",
+        ],
+      },
     };
   },
 
@@ -224,9 +231,8 @@ export default {
 
     //点击分页改变当前页 传递的值是当前点击的分页页码
     handleCurrentChange(val) {
-      // this.page = val;
       this.currentPage = val;
-      console.log(val, "val");
+      // console.log(val, "val");
       this.getLogList(val);
     },
 
@@ -252,36 +258,6 @@ export default {
     rowClass({ row, rowIndex }) {
       console.log(row, rowIndex); //表头行下标
       return "background:#f1f1f1";
-    },
-
-    handleCheckedCitiesChange(value) {
-      console.log("value", value);
-      // let checkedCount = value.length
-      // this.checkAll = checkedCount === this.cities.length
-      // this.isIndeterminate =
-      // 	checkedCount > 0 && checkedCount < this.cities.length
-    },
-
-    //显示复选框
-    handleCheckBox() {
-      console.log("111");
-      this.checkBox = true;
-      this.loginShow = false;
-      this.equipmentShow = false;
-    },
-
-    //登录登出复选框显示
-    handleLogin() {
-      this.loginShow = true;
-      this.checkBox = false;
-      this.equipmentShow = false;
-    },
-
-    //设备操作
-    handleOperate() {
-      this.equipmentShow = true;
-      this.loginShow = false;
-      this.checkBox = false;
     },
   },
 };
