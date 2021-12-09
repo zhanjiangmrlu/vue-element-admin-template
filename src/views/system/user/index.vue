@@ -148,8 +148,8 @@ export default {
     //点击分页改变当前页 传递的值是当前点击的分页页码
     handleCurrentChange(val) {
       // this.page = val;
-      this.currentPage = val
-      console.log(val,'val');
+      this.currentPage = val;
+      console.log(val, "val");
       this.getUserList(val);
     },
 
@@ -158,11 +158,11 @@ export default {
       console.log(`每页 ${val} 条`);
     },
 
-    	//设置表头样式
-		rowClass({ row, rowIndex }) {
-			console.log(row,rowIndex) //表头行下标
-			return 'background:#f1f1f1'
-		},
+    //设置表头样式
+    rowClass({ row, rowIndex }) {
+      console.log(row, rowIndex); //表头行下标
+      return "background:#f1f1f1";
+    },
   },
 };
 </script>
