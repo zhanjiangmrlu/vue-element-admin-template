@@ -149,7 +149,7 @@ export default {
     handleCurrentChange(val) {
       // this.page = val;
       this.currentPage = val;
-      console.log(val, "val");
+      // console.log(val, "val");
       this.getUserList(val);
     },
 
@@ -161,7 +161,7 @@ export default {
     //设置表头样式
     rowClass({ row, rowIndex }) {
       console.log(row, rowIndex); //表头行下标
-      return "background:#f1f1f1";
+      return "background:#fafafa";
     },
   },
 };
