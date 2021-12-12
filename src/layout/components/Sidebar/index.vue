@@ -14,12 +14,14 @@
             :index="resolvePath(item)"
             @click="skipPage(item.children[0])"
           >
-            <i class="el-icon-setting"></i>
+            <i :class="`el-icon-${item.children[0].meta.icon}`" />
             <span slot="title">{{ item.children[0].meta.title }}</span>
           </el-menu-item>
           <el-submenu :index="item.path" v-else>
             <template slot="title"
-              ><i class="el-icon-message"></i>{{ item.meta.title }}</template
+              ><i :class="`el-icon-${item.meta.icon}`" />{{
+                item.meta.title
+              }}</template
             >
             <el-menu-item
               :index="submenu.path"
