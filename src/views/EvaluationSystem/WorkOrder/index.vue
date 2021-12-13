@@ -4,11 +4,8 @@
 
 <script>
 export default {
-name:'WorkOrder',
-
-}
+  name: "WorkOrder",
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

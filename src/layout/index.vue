@@ -1,16 +1,16 @@
 <template>
-<el-scrollbar style="height:100%">
-  <el-container class="layout">
-    <Sidebar />
-    <el-container class="container">
-      <el-header class="el-header">
-        <Navbar />
-      </el-header>
-      <el-main>
-        <router-view />
-      </el-main>
+  <el-scrollbar style="height: 100%">
+    <el-container class="layout">
+      <Sidebar />
+      <el-container class="container">
+        <el-header class="el-header">
+          <Navbar />
+        </el-header>
+        <el-main>
+          <router-view />
+        </el-main>
+      </el-container>
     </el-container>
-  </el-container>
   </el-scrollbar>
 </template>
 
