@@ -6,6 +6,8 @@ import Log from "../views/system/log/index.vue";
 import Attack from "../views/system/attack/index.vue";
 import Appraise from "../views/EvaluationSystem/appraise/index.vue";
 import OrderEvaluation from "../views/EvaluationSystem/OrderEvaluation/index.vue";
+import OrderShops from "../views/EvaluationSystem/OrderShops/index.vue";
+import WorkOrder from "../views/EvaluationSystem/WorkOrder/index.vue";
 
 Vue.use(VueRouter)
 
@@ -49,6 +51,18 @@ const routes = [
         name: "OrderEvaluation",
         meta: { title: "订单评价列表", affix: true },
       },
+      {
+        path:'/evaluation-system/order-shops',
+        component:OrderShops,
+        name:'OrderShops',
+        meta:{title:"订单商品评价列表",affix: true}
+      },
+      {
+        path:'/evaluation-system/work-order',
+        component:WorkOrder,
+        name:'WorkOrder',
+        meta:{title:"工单评价列表",affix:true}
+      }
     ],
   },
   {
