@@ -16,6 +16,10 @@ body {
   font-family: "Regular";
 }
 
+body .el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+
 .head{
   margin-bottom: 20px;
 }

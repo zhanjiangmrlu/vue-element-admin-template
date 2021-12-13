@@ -1,4 +1,5 @@
 <template>
+<el-scrollbar style="height:100%">
   <el-container class="layout">
     <Sidebar />
     <el-container class="container">
@@ -10,6 +11,7 @@
       </el-main>
     </el-container>
   </el-container>
+  </el-scrollbar>
 </template>
 
 <script>

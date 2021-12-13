@@ -11,7 +11,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/login",
+    path: "/",
     name: "Login",
     component: () => import("@/views/login/index"),
     meta: { title: "登录", icon: "dashboard", affix: true },

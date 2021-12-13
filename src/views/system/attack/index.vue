@@ -1,90 +1,92 @@
 <template>
 	<div class="attack">
 		<div class="head_top" v-if="showReport === false">
-		<div class="head">
-			<span class="demonstration">选择日期:</span>
-			<el-date-picker v-model="dataValue" type="date" placeholder="请选择日期">
-			</el-date-picker>
-			<el-button size="mini">生成日报</el-button>
-		</div>
-		<div class="block_table">
-			<el-table
-				:data="tableData"
-				style="width: 100%"
-				:header-cell-style="rowClass"
-			>
-				<el-table-column prop="name" label="报告姓名"> </el-table-column>
-				<el-table-column prop="date" label="报告日期"> </el-table-column>
-				<el-table-column fixed="right" label="操作">
-					<template slot-scope="scope">
-						<el-button
-							@click.native.prevent="preview(scope.$index, tableData)"
-							type="text"
-							size="small"
-						>
-							预览
-						</el-button>
-						<el-button
-							@click.native.prevent="deleteRow(scope.$index, tableData)"
-							type="text"
-							size="small"
-						>
-							删除
-						</el-button>
-					</template>
-				</el-table-column>
-			</el-table>
-		</div>
-		<div class="block">
-			<el-pagination
-				background
-				@size-change="handleSizeChange"
-				@current-change="handleCurrentChange"
-				:current-page="currentPage"
-				:page-sizes="[3, 5]"
-				:page-size="100"
-				layout="total, sizes, prev, pager, next, jumper"
-				:total="20"
-				align="right"
-			>
-			</el-pagination>
-		</div>
-		<el-dialog title="生成日报" :visible.sync="dialogVisible" width="30%">
-			<span class="dailyPaper">
-				<el-form>
-					<el-form-item
-						label="报表名称:"
-						prop="reportName"
-						:rules="[{required:true,message:''}]"
-					>
-						<el-input
-							v-model="reportName"
-							suffix-icon="el-icon-error"
-						></el-input>
-					</el-form-item>
-				</el-form>
-			</span>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="dialogVisible = false">取 消</el-button>
-				<el-button type="primary" @click="creatReport"
-					>确 定</el-button
+			<div class="head">
+				<span class="demonstration">选择日期:</span>
+				<el-date-picker
+					v-model="dataValue"
+					type="date"
+					placeholder="请选择日期"
 				>
-			</span>
-		</el-dialog>
+				</el-date-picker>
+				<el-button size="mini" @click="dailyReport">生成日报</el-button>
+			</div>
+			<div class="block_table">
+				<el-table
+					:data="tableData"
+					style="width: 100%"
+					:header-cell-style="rowClass"
+				>
+					<el-table-column prop="name" label="报告姓名"> </el-table-column>
+					<el-table-column prop="date" label="报告日期"> </el-table-column>
+					<el-table-column fixed="right" label="操作">
+						<template slot-scope="scope">
+							<el-button
+								@click.native.prevent="preview(scope.$index, tableData)"
+								type="text"
+								size="small"
+							>
+								预览
+							</el-button>
+							<el-button
+								@click.native.prevent="deleteRow(scope.$index, tableData)"
+								type="text"
+								size="small"
+							>
+								删除
+							</el-button>
+						</template>
+					</el-table-column>
+				</el-table>
+			</div>
+			<div class="block">
+				<el-pagination
+					background
+					@size-change="handleSizeChange"
+					@current-change="handleCurrentChange"
+					:current-page="currentPage"
+					:page-sizes="[3, 5]"
+					:page-size="100"
+					layout="total, sizes, prev, pager, next, jumper"
+					:total="20"
+					align="right"
+				>
+				</el-pagination>
+			</div>
+			<el-dialog title="生成日报" :visible.sync="dialogVisible" width="30%">
+				<span class="dailyPaper">
+					<el-form>
+						<el-form-item
+							label="报表名称:"
+							prop="reportName"
+							:rules="[{ required: true, message: '' }]"
+						>
+							<el-input
+								v-model="reportName"
+								suffix-icon="el-icon-error"
+							></el-input>
+						</el-form-item>
+					</el-form>
+				</span>
+				<span slot="footer" class="dialog-footer">
+					<el-button @click="dialogVisible = false">取 消</el-button>
+					<el-button type="primary" @click="confirm">确 定</el-button>
+				</span>
+			</el-dialog>
 		</div>
 		<div class="head_bottom" v-if="showReport">
-		<Echarts/>
+			<Echarts />
 		</div>
 	</div>
 </template>
 
 <script>
-import { getAttackList ,dailplyReport} from '../../../api/attack'
+import { getAttackList, dailplyReport } from '../../../api/attack'
 import Echarts from './echarts.vue'
 export default {
 	name: 'Attack',
-	components:{
-		Echarts
+	components: {
+		Echarts,
 	},
 	data() {
 		return {
@@ -92,8 +94,8 @@ export default {
 			currentPage: 1, //当前分页
 			dialogVisible: false, //是否显示弹窗
 			reportName: '', //报告名称
-			reportTime:'',//报告时间
-			showReport:false,//态势报告显示与隐藏
+			reportTime: '', //报告时间
+			showReport: false, //态势报告显示与隐藏
 			tableData: [
 				{
 					date: '2016-05-04',
@@ -102,6 +104,54 @@ export default {
 				{
 					date: '2016-05-03',
 					name: '攻击态势报告2016-05-03',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
+				},
+				{
+					date: '2016-05-02',
+					name: '攻击态势报告2016-05-02',
 				},
 				{
 					date: '2016-05-02',
@@ -155,30 +205,33 @@ export default {
 			this.reportName = rows[index].name
 		},
 
-		//生成日报
-		creatReport(){
+		//预览确定按钮
+		confirm() {
 			this.dialogVisible = false
-			this.showReport = true
 			const params = {
-				name:this.reportName,
-				start_date:this.reportTime
+				name: this.reportName,
+				start_date: this.reportTime,
 			}
-			dailplyReport(params).then(res=>{
-				console.log(res,'resssss');
+			dailplyReport(params).then(res => {
+				console.log(res, 'resssss')
 			})
 			// console.log(params,dailplyReport);
-		}
+		},
+
+		//生成日报弹窗
+		dailyReport() {
+			this.showReport = true
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-.attack{
+.attack {
 	height: 100%;
 
-	.head_bottom{
-	height: 100%;
-
+	.head_bottom {
+		height: 100%;
 	}
 }
 
@@ -221,7 +274,7 @@ export default {
 	}
 }
 
-::v-deep .el-dialog__title{
+::v-deep .el-dialog__title {
 	font-size: 16px;
 }
 
