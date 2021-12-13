@@ -9,10 +9,10 @@
         <el-input
           v-model="formInline.user"
           placeholder="请输入账号或用户名称"
-        ></el-input>
+        />
       </el-form-item>
       <el-form-item label="登录IP:">
-        <el-input v-model="formInline.ip" placeholder="请输入完整IP"></el-input>
+        <el-input v-model="formInline.ip" placeholder="请输入完整IP" />
       </el-form-item>
       <el-form-item label="操作时间:">
         <el-date-picker
@@ -25,10 +25,7 @@
         </el-date-picker>
       </el-form-item>
       <el-form-item label="设备:">
-        <el-input
-          v-model="formInline.name"
-          placeholder="请输入设备名称"
-        ></el-input>
+        <el-input v-model="formInline.name" placeholder="请输入设备名称" />
       </el-form-item>
 
       <el-form-item label="操作分组:">
@@ -93,16 +90,15 @@
     <div class="block">
       <el-pagination
         background
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[3, 5]"
-        :page-size="100"
-        layout="total, sizes, prev, pager, next, jumper"
         :total="20"
         align="right"
-      >
-      </el-pagination>
+        :page-size="100"
+        :page-sizes="[3, 5]"
+        :current-page="currentPage"
+        layout="total, sizes, prev, pager, next, jumper"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
     </div>
   </div>
 </template>
@@ -118,7 +114,7 @@ export default {
       formInline: {
         user: "",
         name: "",
-        ip: ",",
+        ip: "",
       },
       // 操作单选框
       groupRadio: "",

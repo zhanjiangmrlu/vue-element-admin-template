@@ -75,18 +75,18 @@
       </el-dialog>
     </div>
     <div class="head_bottom" v-if="showReport">
-      <Echarts />
+      <AttackPreview />
     </div>
   </div>
 </template>
 
 <script>
 import { getAttackList, dailplyReport } from "../../../api/attack";
-import Echarts from "./echarts.vue";
+import AttackPreview from "./AttackPreview.vue";
 export default {
   name: "Attack",
   components: {
-    Echarts,
+    AttackPreview,
   },
   data() {
     return {
@@ -221,6 +221,7 @@ export default {
     //生成日报弹窗
     dailyReport() {
       this.showReport = true;
+      // this.$router.push({ name: "AttackPreview" });
     },
   },
 };

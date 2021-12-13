@@ -37,8 +37,7 @@
 <script>
 import * as echarts from "echarts";
 export default {
-  name: "Echarts",
-
+  name: "AttackPreview",
   data() {
     return {};
   },
@@ -92,12 +91,45 @@ export default {
             data: [1820, 239, 34, 100, 744, 60],
             barWidth: 10,
             itemStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
                 { offset: 0, color: "#83bff6" },
                 { offset: 0.5, color: "#188df0" },
                 { offset: 1, color: "#188df0" },
               ]),
             },
+            // itemStyle: {
+            //   // 右，下，左，上（0，1，0，0）
+            //   color(params) {
+            //     console.log("params", params);
+            //     // const colorList = [
+            //     //   ["rgba(6, 118, 253, 0)", "#0638f2"],
+            //     //   ["rgba(6, 118, 253, 0)", "#0153c1"],
+            //     //   ["rgba(12, 134, 244, 0)", "#1196eb"],
+            //     //   ["rgba(5, 136, 226, 0)", "#0498c6"],
+            //     //   ["rgba(4, 176, 254, 0)", "#02e7fd"],
+            //     // ];
+            //     // const colorItem = colorList[params.dataIndex];
+            //     // console.log("colorItem", colorItem);
+
+            //     return new echarts.graphic.LinearGradient(
+            //       0,
+            //       0,
+            //       1,
+            //       0,
+            //       [
+            //         {
+            //           offset: 0,
+            //           color: "rgba(6,56,242, 0.1)",
+            //         },
+            //         {
+            //           offset: 1,
+            //           color: "rgba(6, 56, 242, 1)",
+            //         },
+            //       ],
+            //       false
+            //     );
+            //   },
+            // },
           },
           // emphasis: {
           //   itemStyle: {
