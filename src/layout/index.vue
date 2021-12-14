@@ -45,6 +45,10 @@ export default {
   box-shadow: 0 1px 8px #ccc;
 }
 
+.el-main{
+  background: #f0f2f5;
+}
+
 .container {
   padding-left: 210px;
 }
