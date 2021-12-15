@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="common">
     <div class="head">
       <el-button type="primary">清空日志</el-button>
       <el-button>导出日志</el-button>
@@ -260,6 +260,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .head {
   text-align: right;
 }

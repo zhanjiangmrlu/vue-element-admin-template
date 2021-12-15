@@ -1,11 +1,14 @@
+
+import {Loading} from 'element-ui'
+// import {}
 let loading = null
 
 //开始 加载loading
 const startLoading = () => {
-	loading = this.$loading.service({
+	loading = Loading.service({
 		lock: true,
 		text: '加载中……',
-		background: 'rgba(0, 0, 0, 0.7)',
+		background: 'transparent',
 	})
 }
 

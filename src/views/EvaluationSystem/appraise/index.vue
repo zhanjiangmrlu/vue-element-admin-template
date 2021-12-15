@@ -1,6 +1,6 @@
 <template>
 	<!-- 售后评价 -->
-	<div class="appraise">
+	<div class="appraise common">
 		<div class="appraise-body">
 			<el-form :inline="true" :model="formInline" class="demo-form-inline">
 				<el-form-item label="售后单号">
@@ -51,7 +51,7 @@
 			</el-form>
 		</div>
 		<div class="orderList appraise-body">
-			<el-table :data="tableData" border style="width: 100%">
+			<el-table :data="tableData" border :header-cell-style="{background:'#F3F4F7',textAlign:'center'}" :cell-style="{textAlign:'center'}">
 				<el-table-column prop="orderSalesSn" label="关联订单号" width="180">
 				</el-table-column>
 				<el-table-column prop="afterSalesSn" label="售后订单号" width="180">
@@ -63,23 +63,27 @@
 				<el-table-column prop="addTime" label="提交时间"> </el-table-column>
 			</el-table>
 		</div>
-				<div class="pagination">
-				<el-pagination
-					background
-					style="margin-top: 20px"
-					align="center"
-					:current-page="currentPage"
-					:page-sizes="[10, 20, 30, 40]"
-					:page-size="10"
-					layout="total, sizes, prev, pager, next, jumper"
-					:total="400"
-					@size-change="handleSizeChange"
-					@current-change="handleCurrentChange"
-				/>
-			</div>
+		<div class="pagination">
+			<el-pagination
+				background
+				style="margin-top: 20px"
+				align="center"
+				:current-page="currentPage"
+				:page-sizes="[10, 20, 30, 40]"
+				:page-size="10"
+				layout="total, sizes, prev, pager, next, jumper"
+				:total="400"
+				@size-change="handleSizeChange"
+				@current-change="handleCurrentChange"
+			/>
+		</div>
 
 		<!-- 选择商家弹窗 -->
-		<el-dialog title="选择商家" :visible.sync="dialogTableVisible" :lock-scroll="true">
+		<el-dialog
+			title="选择商家"
+			:visible.sync="dialogTableVisible"
+			:lock-scroll="true"
+		>
 			<div class="popSearch">
 				<span>搜索</span>
 				<el-input
@@ -110,7 +114,7 @@
 					style="margin-top: 20px"
 					align="right"
 					:current-page="currentPage"
-					:page-sizes="[10, 20, 30, 40]"
+					:page-sizes="[10, 20, 30]"
 					:page-size="10"
 					layout="total, sizes, prev, pager, next, jumper"
 					:total="400"
@@ -186,31 +190,26 @@ export default {
 
 <style lang="scss" scoped>
 .appraise {
-	height: 100%;
-	.appraise-body {
-		padding: 20px;
-		background: #ffff;
-	}
-
 	.el-select .el-input {
 		width: 130px;
 	}
+
 	.input-with-select .el-input-group__prepend {
 		background-color: #fff;
 	}
 
-	i {
-		padding: 0 4px 0 2px;
-	}
+	// i {
+	// 	padding: 0 4px 0 2px;
+	// }
 
 	::v-deep .el-date-editor.el-input,
 	.el-date-editor.el-input__inner {
 		width: 185.6px;
 	}
 
-	// .pagination {
-	// 	text-align: center;
-	// }
+	.el-pagination {
+		text-align: center;
+	}
 
 	.btn {
 		width: 100%;
@@ -227,5 +226,10 @@ export default {
 			margin: 0 10px;
 		}
 	}
+
+	.el-table .cell, .el-table--border .el-table__cell:first-child .cell{
+		text-align: center;
+	}
+
 }
 </style>

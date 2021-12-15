@@ -1,5 +1,5 @@
 <template>
-  <div class="attack">
+  <div class="attack common">
     <div class="head_top" v-if="showReport === false">
       <div class="head">
         <span class="demonstration">选择日期:</span>
