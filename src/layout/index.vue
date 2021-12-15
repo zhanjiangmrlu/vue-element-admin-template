@@ -45,7 +45,7 @@ export default {
   box-shadow: 0 1px 8px #ccc;
 }
 
-.el-main{
+.el-main {
   background: #f0f2f5;
 }
 
