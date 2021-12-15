@@ -19,6 +19,7 @@
           <el-input
             placeholder="请选择商家"
             class="input-with-select"
+            v-model="supperName"
             @focus="dialogTableVisible = true"
           >
             <el-button
@@ -106,9 +107,13 @@
         :header-cell-style="{ background: '#f5f7fa', textAlign: 'center' }"
       >
         <el-table-column width="200">
-          <el-radio-group v-model="radio">
-            <el-radio lable="选择" />
-          </el-radio-group>
+          <template slot-scope="scope">
+            <el-radio-group v-model="radio" @change="getName(scope.row)">
+              <el-radio :label="scope.row.supplierAccountNumberId"
+                >选择</el-radio
+              >
+            </el-radio-group>
+          </template>
         </el-table-column>
         <el-table-column prop="supplierName" label="商家名称" width="518">
         </el-table-column>
@@ -128,9 +133,7 @@
         />
       </div>
       <div class="btn">
-        <el-button type="primary" @click="dialogTableVisible = false"
-          >确认</el-button
-        >
+        <el-button type="primary" @click="popConfirm">确认</el-button>
       </div>
     </el-dialog>
   </div>
@@ -153,10 +156,11 @@ export default {
       endTime: "", //结束时间
       tableData: [], //订单数据列表
       merchantList: [], //商家列表,
-      dialogTableVisible: false, //选择商家弹窗
-      radio: "选择", //单选
+      dialogTableVisible: true, //选择商家弹窗
+      radio: 1, //单选
       currentPage: 1, //当前页码
       merchantName: "", //商家名称
+      supperName: "", //弹窗里面选择的当前商家的名称
     };
   },
 
@@ -188,6 +192,23 @@ export default {
     inquire() {
       const params = this.merchantName;
       console.log(params);
+    },
+
+    //弹窗确认
+    popConfirm() {
+      this.dialogTableVisible = false;
+      this.getName();
+      //此时可以根据radio获取到当前选择的项的id,然后根据当前项的id取到当前项的supplierName
+      // const getName = merchantPopList.map((item) => {
+      //   if (item.supplierAccountNumberId == this.radio) {
+      //     return item.supplierName;
+      //   }
+      // });
+    },
+
+    getName(value) {
+      this.supperName = value.supplierName;
+      console.log(value, "=====");
     },
   },
 };

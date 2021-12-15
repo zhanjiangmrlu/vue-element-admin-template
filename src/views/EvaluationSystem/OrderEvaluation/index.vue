@@ -73,18 +73,18 @@
       <el-table-column prop="addTime" label="下单时间" />
       <el-table-column prop="orderTime" label="评价提交时间" />
     </el-table>
-    <MechantPop :close="mechantPop" v-on="closePop" />
+    <mechantDialog :visible="visible" @closePop="clickMechant()" />
   </div>
 </template>
 
 <script>
 import orderEvaluation from "@/json/orderEvaluation.json";
 import Vue from "vue";
-import MechantPop from "./mechantPop";
+import mechantDialog from "./mechantDialog";
 export default {
   name: "OrderEvaluation",
   components: {
-    MechantPop,
+    mechantDialog,
   },
 
   data() {
@@ -96,7 +96,7 @@ export default {
       startTime: "", //开始时间
       endTime: "", //结束时间
       tableData: [], //评价列表
-      mechantPop: false, //商家弹窗
+      visible: false, //商家弹窗
     };
   },
 
@@ -114,8 +114,7 @@ export default {
   methods: {
     //点击商家弹窗
     clickMechant() {
-      console.log("00000");
-      this.mechantPop = true;
+      this.visible = !this.visible; //共用这一个事件,点击商家弹窗之后,值为true,点击关闭按钮之后
     },
 
     closePop() {
