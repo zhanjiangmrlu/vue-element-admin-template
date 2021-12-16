@@ -73,17 +73,35 @@
 			<el-table-column prop="addTime" label="下单时间" />
 			<el-table-column prop="orderTime" label="评价提交时间" />
 		</el-table>
-		<mechantDialog :visible="visible" @closePop="colse()" />
+		<div class="pagination">
+			<el-pagination
+				background
+				style="margin-top: 20px"
+				align="center"
+				:current-page="currentPage"
+				:page-sizes="[10, 20, 30, 40]"
+				:page-size="10"
+				layout="total, sizes, prev, pager, next, jumper"
+				:total="400"
+				@size-change="handleSizeChange"
+				@current-change="handleCurrentChange"
+			/>
+		</div>
+		<MechantDialog
+			:visible="visible"
+			@closePop="colse()"
+			@getName="getRowName()"
+		/>
 	</div>
 </template>
 
 <script>
 import orderEvaluation from '@/json/orderEvaluation.json'
-import mechantDialog from './mechantDialog'
+import MechantDialog from './mechantDialog'
 export default {
 	name: 'OrderEvaluation',
 	components: {
-		mechantDialog,
+		MechantDialog,
 	},
 
 	data() {
@@ -96,6 +114,8 @@ export default {
 			endTime: '', //结束时间
 			tableData: [], //评价列表
 			visible: false, //商家弹窗
+			currentPage: 1, //当前页码
+			currentName: '', //
 		}
 	},
 
@@ -111,13 +131,31 @@ export default {
 	},
 
 	methods: {
+		//当前点击页码
+		handleCurrentChange(value) {
+			this.currentPage = value
+			console.log('点击页码')
+		},
+
+		//手动填写页码
+		handleSizeChange(value) {
+			this.currentPage = value
+		},
+
 		//点击商家弹窗
 		clickMechant() {
 			this.visible = true //共用这一个事件,点击商家弹窗之后,值为true,点击关闭按钮之后
 		},
 
+		//关闭弹窗
 		colse() {
 			this.visible = false
+		},
+
+		//获取当前行的名称
+		getRowName() {
+			// this.currentName = getName
+      // console.log(getName);
 		},
 	},
 }

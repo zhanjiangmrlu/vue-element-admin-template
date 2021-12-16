@@ -3,7 +3,7 @@
 	<el-dialog
 		title="选择商家"
 		:lock-scroll="true"
-		:visible.sync="isVisible"
+		:visible.sync="showDialog"
 		@close="closeDialog"
 	>
 		<div class="popSearch">
@@ -24,7 +24,7 @@
 		>
 			<el-table-column width="200">
 				<template slot-scope="scope">
-					<el-radio-group v-model="radio" @change.native="getId(scope.row)">
+					<el-radio-group v-model="radio" @change="getCurrentInfo(scope.row)">
 						<el-radio :label="scope.row.supplierAccountNumberId"
 							>选择{{ scope.row.supplierAccountNumberId }}</el-radio
 						>
@@ -58,36 +58,38 @@
 import merchantPopList from '@/json/merchantPopList.json'
 export default {
 	name: 'mechantDialog',
+
 	props: {
-		visible: {
-			type: Boolean,
+		visibleDialog: {
+			typeof: Boolean,
 			default: false,
 		},
 	},
 	data() {
 		return {
-			radio: '1', //单选
+			radio: 1, //单选
+      currentPage: 1, //当前页码
 			merchantList: [], //商家列表,
 			merchantName: '', //商家名称
-			isVisible: false,
-			currentPage: 1, //当前页码
-			getName: '', //获取到当前行的名称
+			showDialog: false, //dialog弹窗是否显示
+			currentName: '', //点前点击项的名称
 		}
 	},
+
 	watch: {
-		visible() {
-			this.isVisible = this.visible
+		visibleDialog() {
+			this.showDialog = this.visibleDialog
 		},
 	},
 
 	created() {
+		console.log(merchantPopList, 'merchantPopList')
 		this.merchantList = merchantPopList.resultData.supplierAccountNumberList
 	},
 	methods: {
 		//当前点击页码
 		handleCurrentChange(value) {
 			this.currentPage = value
-			console.log('点击页码')
 		},
 
 		//手动填写页码
@@ -101,17 +103,41 @@ export default {
 			console.log(params)
 		},
 
-		// 关闭弹窗
 		closeDialog() {
-			this.$emit('closePop')
-      this.$emit('getName',getName)
+			this.$emit('closeDialog')
 		},
 
-		getId(value) {
-			this.getName = value.supplierName
+		getCurrentInfo(value) {
+			console.log(value.supplierName)
+			this.currentName = value.supplierName
 		},
 	},
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.btn {
+	width: 100%;
+	text-align: right;
+	margin-top: 20px;
+}
+
+.popSearch {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+
+	.el-input {
+		margin: 0 10px;
+	}
+}
+
+.el-pagination {
+	text-align: center;
+}
+
+.el-table .cell,
+.el-table--border .el-table__cell:first-child .cell {
+	text-align: center;
+}
+</style>

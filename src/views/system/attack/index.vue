@@ -228,8 +228,6 @@ export default {
 
 <style lang="scss" scoped>
 .attack {
-	height: 100%;
-
 	.head_bottom {
 		height: 100%;
 	}
