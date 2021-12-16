@@ -7,7 +7,9 @@
           <Navbar />
         </el-header>
         <el-main>
-          <router-view />
+          <div class="main">
+            <router-view />
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -45,12 +47,21 @@ export default {
   box-shadow: 0 1px 8px #ccc;
 }
 
-.el-main {
-  background: #f0f2f5;
-  height: calc(100vh - 40px);
-}
-
 .container {
   padding-left: 210px;
+}
+
+::v-deep .el-main,
+::v-deep .el-scrollbar__view {
+  height: 100%;
+}
+
+::v-deep .el-main {
+  background: #f0f2f5;
+}
+
+.main {
+  background: #fff;
+  height: 100%;
 }
 </style>

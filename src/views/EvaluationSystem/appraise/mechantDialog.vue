@@ -16,24 +16,25 @@
       />
       <el-button type="primary" @click="inquire">查询</el-button>
     </div>
-    <el-table
-      :data="merchantList"
-      border
-      style="width: 100%"
-      :header-cell-style="{ background: '#f5f7fa', textAlign: 'center' }"
-    >
-      <el-table-column width="200">
-        <template slot-scope="scope">
-          <el-radio-group v-model="radio" @change="getCurrentInfo(scope.row)">
-            <el-radio :label="scope.row.supplierAccountNumberId"
-              >选择{{ scope.row.supplierAccountNumberId }}</el-radio
-            >
-          </el-radio-group>
-        </template>
-      </el-table-column>
-      <el-table-column prop="supplierName" label="商家名称" width="518">
-      </el-table-column>
-    </el-table>
+    <el-scrollbar class="scrollbar">
+      <el-table
+        :data="merchantList"
+        border
+        style="width: 100%"
+        :header-cell-style="{ background: '#f5f7fa', textAlign: 'center' }"
+      >
+        <el-table-column width="200">
+          <template slot-scope="scope">
+            <el-radio-group v-model="radio" @change="getCurrentInfo(scope.row)">
+              <el-radio :label="scope.row.supplierAccountNumberId"
+                >选择</el-radio
+              >
+            </el-radio-group>
+          </template>
+        </el-table-column>
+        <el-table-column prop="supplierName" label="商家名称" />
+      </el-table>
+    </el-scrollbar>
     <div class="pagination">
       <el-pagination
         background
@@ -122,10 +123,14 @@ export default {
   margin-top: 20px;
 }
 
+.scrollbar {
+  height: 450px;
+}
+
 .popSearch {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 
   .el-input {
     margin: 0 10px;

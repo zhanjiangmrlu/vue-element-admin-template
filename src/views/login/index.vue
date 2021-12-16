@@ -17,7 +17,10 @@
           <el-input type="password" v-model="ruleForm.password"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button class="btn" type="primary" @click="submitForm('ruleForm')"
+          <el-button
+            class="loginBtn"
+            type="primary"
+            @click="submitForm('ruleForm')"
             >登录</el-button
           >
         </el-form-item>
@@ -104,7 +107,7 @@ export default {
     width: 480px;
     margin: 20px auto;
 
-    .btn {
+    .loginBtn {
       width: 100%;
     }
   }

@@ -1,5 +1,6 @@
 <template>
   <!-- 选择商家弹窗 -->
+
   <el-dialog
     title="选择商家"
     :lock-scroll="true"
@@ -16,24 +17,24 @@
       />
       <el-button type="primary" @click="inquire">查询</el-button>
     </div>
-    <el-table
-      :data="merchantList"
-      border
-      style="width: 100%"
-      :header-cell-style="{ background: '#f5f7fa', textAlign: 'center' }"
-    >
-      <el-table-column width="200">
-        <template slot-scope="scope">
-          <el-radio-group v-model="radio" @change.native="getId(scope.row)">
-            <el-radio :label="scope.row.supplierAccountNumberId"
-              >选择{{ scope.row.supplierAccountNumberId }}</el-radio
-            >
-          </el-radio-group>
-        </template>
-      </el-table-column>
-      <el-table-column prop="supplierName" label="商家名称" width="518">
-      </el-table-column>
-    </el-table>
+    <el-scrollbar class="scrollbar">
+      <el-table
+        border
+        :data="merchantList"
+        :header-cell-style="{ background: '#f5f7fa', textAlign: 'center' }"
+      >
+        <el-table-column width="200">
+          <template slot-scope="scope">
+            <el-radio-group v-model="radio" @change.native="getId(scope.row)">
+              <el-radio :label="scope.row.supplierAccountNumberId"
+                >选择</el-radio
+              >
+            </el-radio-group>
+          </template>
+        </el-table-column>
+        <el-table-column prop="supplierName" label="商家名称" />
+      </el-table>
+    </el-scrollbar>
     <div class="pagination">
       <el-pagination
         background
@@ -113,4 +114,37 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.el-dialog {
+  height: 700px;
+}
+
+.scrollbar {
+  height: 450px;
+}
+
+.btn {
+  width: 100%;
+  text-align: right;
+  margin-top: 20px;
+}
+
+.popSearch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .el-input {
+    margin: 0 10px;
+  }
+}
+
+.el-pagination {
+  text-align: center;
+}
+
+.el-table .cell,
+.el-table--border .el-table__cell:first-child .cell {
+  text-align: center;
+}
+</style>
