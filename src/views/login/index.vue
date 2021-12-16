@@ -72,7 +72,6 @@ export default {
         } else {
           return;
         }
-        // this.$router.push("/workbench/index");
       });
     },
     resetForm(formName) {

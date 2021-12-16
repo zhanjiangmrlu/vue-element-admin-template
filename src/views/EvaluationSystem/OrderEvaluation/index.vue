@@ -73,7 +73,7 @@
       <el-table-column prop="addTime" label="下单时间" />
       <el-table-column prop="orderTime" label="评价提交时间" />
     </el-table>
-    <mechantDialog :visible="visible" @closePop="clickMechant()" />
+    <mechantDialog :visible="visible" @closePop="colse()" />
   </div>
 </template>
 
@@ -114,12 +114,12 @@ export default {
   methods: {
     //点击商家弹窗
     clickMechant() {
-      this.visible = !this.visible; //共用这一个事件,点击商家弹窗之后,值为true,点击关闭按钮之后
+      this.visible = true; //共用这一个事件,点击商家弹窗之后,值为true,点击关闭按钮之后
     },
-
-    closePop() {
-      this.mechantPop = false;
-    },
+    
+    colse(){
+      this.visible = false
+    }
   },
 };
 </script>

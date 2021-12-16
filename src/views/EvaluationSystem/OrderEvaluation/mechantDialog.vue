@@ -66,14 +66,8 @@ export default {
       currentPage: 1, //当前页码
       merchantName: "", //商家名称
       isVisible: false,
-      // dialogTableVisible:false,//商家弹窗
     };
   },
-  // computed: {
-  //   isVisible() {
-  //     return this.visible;
-  //   },
-  // },
   watch: {
     visible() {
       this.isVisible = this.visible;
