@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showFullScreenLoading, tryHideFullScreenLoading } from "./loading";
 
 const request = axios.create({
   baseURL: "http://yapi.smart-xwork.cn/mock/118724/",
@@ -10,6 +11,7 @@ const request = axios.create({
 request.interceptors.request.use(
   (config) => {
     // 在发送请求之前做些什么
+    showFullScreenLoading();
     config.headers["token"] = "token";
     return config;
   },
@@ -22,7 +24,8 @@ request.interceptors.request.use(
 // 添加响应拦截器
 request.interceptors.response.use(
   function (response) {
-    // 对响应数据做点什么
+    // 对响应数据做点
+    tryHideFullScreenLoading();
     return response;
   },
   function (error) {

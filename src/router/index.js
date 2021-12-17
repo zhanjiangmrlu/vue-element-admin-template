@@ -1,9 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
-import User from "../views/system/user/userList.vue";
+import User from "../views/system/user/index.vue";
 import Log from "../views/system/log/index.vue";
 import Attack from "../views/system/attack/index.vue";
+import Appraise from "../views/EvaluationSystem/appraise/index.vue";
+import OrderEvaluation from "../views/EvaluationSystem/OrderEvaluation/index.vue";
+import OrderShops from "../views/EvaluationSystem/OrderShops/index.vue";
+import WorkOrder from "../views/EvaluationSystem/WorkOrder/index.vue";
 
 Vue.use(VueRouter);
 
@@ -22,7 +26,42 @@ const routes = [
         path: "index",
         component: () => import("@/views/workbench/index"),
         name: "Workbench",
-        meta: { title: "工作台", icon: "documentation", affix: true },
+        meta: { title: "工作台", icon: "monitor", affix: true },
+      },
+    ],
+  },
+  {
+    path: "/evaluation-system",
+    component: Layout,
+    meta: {
+      icon: "chat-dot-round",
+      title: "评价管理",
+      roles: ["admin", "editor"], // you can set roles in root nav
+    },
+    children: [
+      {
+        path: "/evaluation-system/appraise",
+        component: Appraise,
+        name: "Appraise",
+        meta: { title: "售后评价列表", affix: true },
+      },
+      {
+        path: "/evaluation-system/order-evaluation",
+        component: OrderEvaluation,
+        name: "OrderEvaluation",
+        meta: { title: "订单评价列表", affix: true },
+      },
+      {
+        path: "/evaluation-system/order-shops",
+        component: OrderShops,
+        name: "OrderShops",
+        meta: { title: "订单商品评价列表", affix: true },
+      },
+      {
+        path: "/evaluation-system/work-order",
+        component: WorkOrder,
+        name: "WorkOrder",
+        meta: { title: "工单评价列表", affix: true },
       },
     ],
   },
@@ -30,7 +69,7 @@ const routes = [
     path: "/system",
     component: Layout,
     meta: {
-      icon: "lock",
+      icon: "setting",
       title: "系统管理",
       roles: ["admin", "editor"], // you can set roles in root nav
     },

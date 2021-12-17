@@ -5,9 +5,11 @@ import "./styles/index.scss";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import dayjs from "dayjs";
+Vue.prototype.dayjs = dayjs; //轻量级时间戳转换插件
 
 Vue.config.productionTip = false;
-Vue.use(ElementUI);
+Vue.use(ElementUI, { size: "mini" });
 
 new Vue({
   router,
