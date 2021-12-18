@@ -10,7 +10,7 @@
       >
         <div v-for="item in routes" :key="item.path">
           <el-menu-item
-            v-if="item.children.length === 1"
+            v-if="item.children.length === 1 && !item.hidden"
             :index="resolvePath(item)"
             @click="skipPage(item.children[0])"
           >
@@ -24,9 +24,9 @@
               }}</template
             >
             <el-menu-item
-              :index="submenu.path"
-              v-for="submenu in item.children"
+              v-for="submenu in handleSubmenuShow(item.children)"
               :key="submenu.path"
+              :index="submenu.path"
               @click="skipPage(submenu)"
               >{{ submenu.meta.title }}</el-menu-item
             >
@@ -88,6 +88,10 @@ export default {
         return `${routePath.path}/${routePath.children[0].path}`;
       }
       return routePath.path;
+    },
+    // 处理children中不隐藏菜单
+    handleSubmenuShow(arr) {
+      return arr.filter((item) => !item.hidden);
     },
   },
 };
