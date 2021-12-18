@@ -27,7 +27,7 @@
               v-for="submenu in handleSubmenuShow(item.children)"
               :key="submenu.path"
               :index="submenu.path"
-              @click="skipPage(submenu)"
+              @click="skipPage(submenu, item)"
               >{{ submenu.meta.title }}</el-menu-item
             >
           </el-submenu>

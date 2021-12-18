@@ -100,7 +100,7 @@ const routes = [
         hidden: true, // 隐藏菜单栏显示
         meta: {
           title: "攻击态势报告预览",
-          fatherPath: "/system/attack",
+          fatherPath: "/system/attack", // 有上一级时, 需要加上fatherPath的path
         },
       },
     ],
