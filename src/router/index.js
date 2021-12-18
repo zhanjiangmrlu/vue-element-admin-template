@@ -4,6 +4,7 @@ import Layout from "@/layout";
 import User from "../views/system/user/index.vue";
 import Log from "../views/system/log/index.vue";
 import Attack from "../views/system/attack/index.vue";
+import AttackPreview from "../views/system/attack/AttackPreview.vue";
 import Appraise from "../views/EvaluationSystem/appraise/index.vue";
 import OrderEvaluation from "../views/EvaluationSystem/OrderEvaluation/index.vue";
 import OrderShops from "../views/EvaluationSystem/OrderShops/index.vue";
@@ -90,8 +91,17 @@ const routes = [
         path: "/system/attack",
         component: Attack,
         name: "Attack",
-        hidden: true,
         meta: { title: "攻击态势报告" },
+      },
+      {
+        path: "/system/attack-preview",
+        component: AttackPreview,
+        name: "AttackPreview",
+        hidden: true, // 隐藏菜单栏显示
+        meta: {
+          title: "攻击态势报告预览",
+          fatherPath: "/system/attack",
+        },
       },
     ],
   },

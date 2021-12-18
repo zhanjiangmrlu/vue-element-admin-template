@@ -1,6 +1,6 @@
 <template>
   <div class="attack common">
-    <div class="head_top" v-if="!showReport">
+    <div class="head_top">
       <div class="head">
         <span class="demonstration">选择日期:</span>
         <el-date-picker
@@ -9,16 +9,12 @@
           placeholder="请选择日期"
         >
         </el-date-picker>
-        <el-button size="mini" @click="dailyReport">生成日报</el-button>
+        <el-button @click="dailyReport">生成日报</el-button>
       </div>
       <div class="block_table">
-        <el-table
-          :data="tableData"
-          style="width: 100%"
-          :header-cell-style="rowClass"
-        >
-          <el-table-column prop="name" label="报告姓名"> </el-table-column>
-          <el-table-column prop="date" label="报告日期"> </el-table-column>
+        <el-table :data="tableData" :header-cell-style="rowClass">
+          <el-table-column prop="name" label="报告姓名" />
+          <el-table-column prop="date" label="报告日期" />
           <el-table-column fixed="right" label="操作">
             <template slot-scope="scope">
               <el-button
@@ -74,20 +70,13 @@
         </span>
       </el-dialog>
     </div>
-    <div class="head_bottom" v-if="showReport">
-      <AttackPreview />
-    </div>
   </div>
 </template>
 
 <script>
 import { getAttackList, dailplyReport } from "../../../api/attack";
-import AttackPreview from "./AttackPreview.vue";
 export default {
   name: "Attack",
-  components: {
-    AttackPreview,
-  },
   data() {
     return {
       dataValue: "",
@@ -95,7 +84,6 @@ export default {
       dialogVisible: false, //是否显示弹窗
       reportName: "", //报告名称
       reportTime: "", //报告时间
-      showReport: false, //态势报告显示与隐藏
       tableData: [
         {
           date: "2016-05-04",
@@ -182,7 +170,6 @@ export default {
     // 当前点击的页码
     handleCurrentChange(val) {
       this.currentPage = val;
-      // console.log(val, "val");
       this.getList(val);
     },
 
@@ -214,13 +201,11 @@ export default {
       dailplyReport(params).then((res) => {
         console.log(res, "resssss");
       });
-      // console.log(params,dailplyReport);
     },
 
     //生成日报弹窗
     dailyReport() {
-      this.showReport = true;
-      // this.$router.push({ name: "AttackPreview" });
+      this.$router.push({ name: "AttackPreview" });
     },
   },
 };

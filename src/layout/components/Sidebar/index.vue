@@ -68,6 +68,10 @@ export default {
       if (meta.activeMenu) {
         return meta.activeMenu;
       }
+      // 当前菜单中子菜单隐藏时, 菜单激活显示
+      if (meta.fatherPath) {
+        return meta.fatherPath;
+      }
       return path;
     },
   },
